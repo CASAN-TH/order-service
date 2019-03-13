@@ -5,9 +5,55 @@ var Schema = mongoose.Schema;
 
 
 var OrderSchema = new Schema({
-    name: {
+    orderno: {
         type: String,
-        required: 'Please fill a Order name',
+    },
+    customer: {
+        firstname: {
+            type: String
+        },
+        lastname: {
+            type: String
+        },
+        tel: {
+            type: String
+        },
+        address: {
+            type: String
+        }
+    },
+    items: {
+        type: [
+            {
+                name: {
+                    type: String
+                },
+                option: {
+                    type: [
+                        {
+                            name: {
+                                type: String
+                            },
+                            value: {
+                                type: String
+                            },
+                            qty: {
+                                type: Number
+                            },
+                            price: {
+                                type: Number
+                            },
+                            amount: {
+                                type: Number
+                            }
+                        }
+                    ]
+                },
+                totalamount: {
+                    type: Number
+                }
+            }
+        ]
     },
     created: {
         type: Date,
