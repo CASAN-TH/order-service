@@ -16,7 +16,28 @@ describe('Order CRUD routes tests', function () {
 
     before(function (done) {
         mockup = {
-            name: 'name'
+            orderno: 'TTT00001',
+            customer: {
+                firstname: 'Nutshapon',
+                lastname: 'Lertlaosakun',
+                tel: '025337172',
+                address: '59/337 ต.คูคต อ.ลำลูกกา จ.ปทุมธานี'
+            },
+            items: [
+                {
+                    name: 'ลิปติก',
+                    option: [
+                        {
+                            name: 'สี',
+                            value: 'แดง',
+                            qty: 2,
+                            price: 100,
+                            amount: 200
+                        }
+                    ],
+                    totalamount: 200
+                }
+            ]
         };
         credentials = {
             username: 'username',
@@ -32,18 +53,18 @@ describe('Order CRUD routes tests', function () {
         done();
     });
 
-    it('should be Order get use token', (done)=>{
+    it('should be Order get use token', (done) => {
         request(app)
-        .get('/api/orders')
-        .set('Authorization', 'Bearer ' + token)
-        .expect(200)
-        .end((err, res)=>{
-            if (err) {
-                return done(err);
-            }
-            var resp = res.body;
-            done();
-        });
+            .get('/api/orders')
+            .set('Authorization', 'Bearer ' + token)
+            .expect(200)
+            .end((err, res) => {
+                if (err) {
+                    return done(err);
+                }
+                var resp = res.body;
+                done();
+            });
     });
 
     it('should be Order get by id', function (done) {
@@ -67,15 +88,24 @@ describe('Order CRUD routes tests', function () {
                             return done(err);
                         }
                         var resp = res.body;
+                        // console.log(resp.data.items);
                         assert.equal(resp.status, 200);
-                        assert.equal(resp.data.name, mockup.name);
+                        assert.equal(resp.data.orderno, mockup.orderno);
+                        assert.equal(resp.data.customer.firstname, mockup.customer.firstname);
+                        assert.equal(resp.data.customer.lastname, mockup.customer.lastname);
+                        assert.equal(resp.data.customer.tel, mockup.customer.tel);
+                        assert.equal(resp.data.items[0].name, mockup.items[0].name);
+                        assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
+                        assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
+                        assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
+                        assert.equal(resp.data.items[0].totalamount, mockup.items[0].totalamount);
                         done();
                     });
             });
 
     });
 
-    it('should be Order post use token', (done)=>{
+    it('should be Order post use token', (done) => {
         request(app)
             .post('/api/orders')
             .set('Authorization', 'Bearer ' + token)
@@ -86,7 +116,7 @@ describe('Order CRUD routes tests', function () {
                     return done(err);
                 }
                 var resp = res.body;
-                assert.equal(resp.data.name, mockup.name);
+                assert.equal(resp.data.orderno, mockup.orderno);
                 done();
             });
     });
@@ -104,7 +134,7 @@ describe('Order CRUD routes tests', function () {
                 }
                 var resp = res.body;
                 var update = {
-                    name: 'name update'
+                    orderno: 'orderno update'
                 }
                 request(app)
                     .put('/api/orders/' + resp.data._id)
@@ -116,7 +146,7 @@ describe('Order CRUD routes tests', function () {
                             return done(err);
                         }
                         var resp = res.body;
-                        assert.equal(resp.data.name, update.name);
+                        assert.equal(resp.data.orderno, update.orderno);
                         done();
                     });
             });
@@ -144,15 +174,15 @@ describe('Order CRUD routes tests', function () {
 
     });
 
-    it('should be order get not use token', (done)=>{
+    it('should be order get not use token', (done) => {
         request(app)
-        .get('/api/orders')
-        .expect(403)
-        .expect({
-            status: 403,
-            message: 'User is not authorized'
-        })
-        .end(done);
+            .get('/api/orders')
+            .expect(403)
+            .expect({
+                status: 403,
+                message: 'User is not authorized'
+            })
+            .end(done);
     });
 
     it('should be order post not use token', function (done) {
@@ -182,7 +212,7 @@ describe('Order CRUD routes tests', function () {
                 }
                 var resp = res.body;
                 var update = {
-                    name: 'name update'
+                    orderno: 'orderno update'
                 }
                 request(app)
                     .put('/api/orders/' + resp.data._id)
