@@ -37,7 +37,8 @@ describe('Order CRUD routes tests', function () {
                     amount: 200
                 }
             ],
-            totalamount: 200
+            totalamount: 200,
+            user_id: "user001"
         };
         credentials = {
             username: 'username',
@@ -101,6 +102,7 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data.items[0].price, mockup.items[0].price);
                         assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                         assert.equal(resp.data.totalamount, mockup.totalamount);
+                        assert.equal(resp.data.user_id, mockup.user_id);
                         done();
                     });
             });
@@ -130,6 +132,7 @@ describe('Order CRUD routes tests', function () {
                 assert.equal(resp.data.items[0].price, mockup.items[0].price);
                 assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                 assert.equal(resp.data.totalamount, mockup.totalamount);
+                assert.equal(resp.data.user_id, mockup.user_id);
                 done();
             });
     });

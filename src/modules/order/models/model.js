@@ -55,6 +55,9 @@ var OrderSchema = new Schema({
     totalamount: {
         type: Number
     },
+    user_id: {
+        type: String
+    },
     created: {
         type: Date,
         default: Date.now
