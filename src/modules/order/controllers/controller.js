@@ -107,3 +107,18 @@ exports.delete = function (req, res) {
         };
     });
 };
+
+exports.generateOrderNo = function (req, res, next) {
+    if (req.body) {
+        // var newDate = new Date();
+        //  req.newDate = newDate;
+        // var textDate =  newDate.getFullYear().toString().substring(2, 4) + ((newDate.getMonth() + 1) < 10 ? '0' : '') + (newDate.getMonth() + 1).toString() + newDate.getDate().toString();
+        req.body.orderno =new Date().getTime(); 
+        next();
+    } else {
+        return res.status(400).send({
+            status: 400,
+            message: 'Order not found.'
+        });
+    }
+};
