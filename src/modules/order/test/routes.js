@@ -16,7 +16,7 @@ describe('Order CRUD routes tests', function () {
 
     before(function (done) {
         mockup = {
-           
+
             customer: {
                 firstname: 'Nutshapon',
                 lastname: 'Lertlaosakun',
@@ -29,12 +29,12 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'แดง',
-                            qty: 2,
-                            price: 100,
-                            amount: 200
+                            value: 'แดง'
                         }
-                    ]
+                    ],
+                    qty: 2,
+                    price: 100,
+                    amount: 200
                 }
             ],
             totalamount: 200
@@ -97,7 +97,9 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data.items[0].name, mockup.items[0].name);
                         assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
                         assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
-                        assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
+                        assert.equal(resp.data.items[0].qty, mockup.items[0].qty);
+                        assert.equal(resp.data.items[0].price, mockup.items[0].price);
+                        assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                         assert.equal(resp.data.totalamount, mockup.totalamount);
                         done();
                     });
@@ -116,7 +118,18 @@ describe('Order CRUD routes tests', function () {
                     return done(err);
                 }
                 var resp = res.body;
+                assert.equal(resp.status, 200);
                 assert.notEqual(resp.data.orderno, "");
+                assert.equal(resp.data.customer.firstname, mockup.customer.firstname);
+                assert.equal(resp.data.customer.lastname, mockup.customer.lastname);
+                assert.equal(resp.data.customer.tel, mockup.customer.tel);
+                assert.equal(resp.data.items[0].name, mockup.items[0].name);
+                assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
+                assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
+                assert.equal(resp.data.items[0].qty, mockup.items[0].qty);
+                assert.equal(resp.data.items[0].price, mockup.items[0].price);
+                assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
+                assert.equal(resp.data.totalamount, mockup.totalamount);
                 done();
             });
     });
@@ -146,7 +159,18 @@ describe('Order CRUD routes tests', function () {
                             return done(err);
                         }
                         var resp = res.body;
-                        assert.equal(resp.data.orderno, update.orderno);
+                        assert.equal(resp.status, 200);
+                        assert.notEqual(resp.data.orderno, "");
+                        assert.equal(resp.data.customer.firstname, mockup.customer.firstname);
+                        assert.equal(resp.data.customer.lastname, mockup.customer.lastname);
+                        assert.equal(resp.data.customer.tel, mockup.customer.tel);
+                        assert.equal(resp.data.items[0].name, mockup.items[0].name);
+                        assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
+                        assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
+                        assert.equal(resp.data.items[0].qty, mockup.items[0].qty);
+                        assert.equal(resp.data.items[0].price, mockup.items[0].price);
+                        assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
+                        assert.equal(resp.data.totalamount, mockup.totalamount);
                         done();
                     });
             });
