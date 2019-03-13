@@ -7,7 +7,10 @@ module.exports = function (app) {
     var urlWithParam = '/api/orders/:orderId';
     app.route(url).all(policy.isAllowed)
         .get(controller.getList)
-        .post(controller.create);
+        .post(
+            controller.generateOrderNo,
+            controller.create
+        );
 
     app.route(urlWithParam).all(policy.isAllowed)
         .get(controller.read)
@@ -24,6 +27,6 @@ module.exports = function (app) {
      */
     // mq.consume('order', 'created', 'created', (msg)=>{
     //     console.log(JSON.parse(msg.content));
-        
+
     // });
 }

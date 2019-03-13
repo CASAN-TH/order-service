@@ -48,12 +48,12 @@ var OrderSchema = new Schema({
                             }
                         }
                     ]
-                },
-                totalamount: {
-                    type: Number
                 }
             }
         ]
+    },
+    totalamount: {
+        type: Number
     },
     created: {
         type: Date,

@@ -16,7 +16,7 @@ describe('Order CRUD routes tests', function () {
 
     before(function (done) {
         mockup = {
-            orderno: 'TTT00001',
+           
             customer: {
                 firstname: 'Nutshapon',
                 lastname: 'Lertlaosakun',
@@ -34,10 +34,10 @@ describe('Order CRUD routes tests', function () {
                             price: 100,
                             amount: 200
                         }
-                    ],
-                    totalamount: 200
+                    ]
                 }
-            ]
+            ],
+            totalamount: 200
         };
         credentials = {
             username: 'username',
@@ -88,9 +88,9 @@ describe('Order CRUD routes tests', function () {
                             return done(err);
                         }
                         var resp = res.body;
-                        // console.log(resp.data.items);
+                        // console.log(resp);
                         assert.equal(resp.status, 200);
-                        assert.equal(resp.data.orderno, mockup.orderno);
+                        assert.notEqual(resp.data.orderno, "");
                         assert.equal(resp.data.customer.firstname, mockup.customer.firstname);
                         assert.equal(resp.data.customer.lastname, mockup.customer.lastname);
                         assert.equal(resp.data.customer.tel, mockup.customer.tel);
@@ -98,7 +98,7 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
                         assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
                         assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
-                        assert.equal(resp.data.items[0].totalamount, mockup.items[0].totalamount);
+                        assert.equal(resp.data.totalamount, mockup.totalamount);
                         done();
                     });
             });
@@ -116,7 +116,7 @@ describe('Order CRUD routes tests', function () {
                     return done(err);
                 }
                 var resp = res.body;
-                assert.equal(resp.data.orderno, mockup.orderno);
+                assert.notEqual(resp.data.orderno, "");
                 done();
             });
     });
