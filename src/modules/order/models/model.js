@@ -36,18 +36,18 @@ var OrderSchema = new Schema({
                             },
                             value: {
                                 type: String
-                            },
-                            qty: {
-                                type: Number
-                            },
-                            price: {
-                                type: Number
-                            },
-                            amount: {
-                                type: Number
                             }
                         }
                     ]
+                },
+                qty: {
+                    type: Number
+                },
+                price: {
+                    type: Number
+                },
+                amount: {
+                    type: Number
                 }
             }
         ]
