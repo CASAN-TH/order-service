@@ -1,13 +1,13 @@
 'use strict';
 var mongoose = require('mongoose'),
-    model = require('../models/model'), 
+    model = require('../models/model'),
     mq = require('../../core/controllers/rabbitmq'),
     Order = mongoose.model('Order'),
     errorHandler = require('../../core/controllers/errors.server.controller'),
     _ = require('lodash');
-    
+
 exports.getList = function (req, res) {
-        Order.find(function (err, datas) {
+    Order.find(function (err, datas) {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -23,9 +23,9 @@ exports.getList = function (req, res) {
 };
 
 exports.create = function (req, res) {
-        var newOrder = new Order(req.body);
-        newOrder.createby = req.user;
-        newOrder.save(function (err, data) {
+    var newOrder = new Order(req.body);
+    newOrder.createby = req.user;
+    newOrder.save(function (err, data) {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -113,7 +113,7 @@ exports.generateOrderNo = function (req, res, next) {
         // var newDate = new Date();
         //  req.newDate = newDate;
         // var textDate =  newDate.getFullYear().toString().substring(2, 4) + ((newDate.getMonth() + 1) < 10 ? '0' : '') + (newDate.getMonth() + 1).toString() + newDate.getDate().toString();
-        req.body.orderno =new Date().getTime(); 
+        req.body.orderno = new Date().getTime();
         next();
     } else {
         return res.status(400).send({
@@ -122,3 +122,46 @@ exports.generateOrderNo = function (req, res, next) {
         });
     }
 };
+
+exports.getByUserID = function (req, res, next, user_id) {
+    // if (!mongoose.Types.ObjectId.isValid(user_id)) {
+    //     return res.status(400).send({
+    //         status: 400,
+    //         message: 'Id is invalid'
+    //     });
+    // }
+
+    Order.find({ user_id: user_id }, function (err, data) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            req.data = data ? data : {};
+            next();
+        };
+    });
+};
+
+exports.getOrderByTeam = function (req, res, next) {
+    Order.find({ user_id: req.body }, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            req.resualt = datas
+            next();
+        }
+    })
+
+}
+
+exports.returnData = function (req, res) {
+    res.jsonp({
+        status: 200,
+        data: req.resualt
+    });
+}

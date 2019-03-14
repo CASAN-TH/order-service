@@ -17,7 +17,17 @@ module.exports = function (app) {
         .put(controller.update)
         .delete(controller.delete);
 
+    app.route('/api/order/user/:userId') //get order เฉพาะของตัวเอง
+        .get(controller.read)
+
+    app.route('/api/order/team')  //get order ทั้งหมดของทีม
+        .post(
+            controller.getOrderByTeam,
+            controller.returnData
+        )
+
     app.param('orderId', controller.getByID);
+    app.param('userId', controller.getByUserID);
 
     /**
      * Message Queue

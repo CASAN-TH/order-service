@@ -16,7 +16,6 @@ describe('Order CRUD routes tests', function () {
 
     before(function (done) {
         mockup = {
-
             customer: {
                 firstname: 'Nutshapon',
                 lastname: 'Lertlaosakun',
@@ -276,6 +275,167 @@ describe('Order CRUD routes tests', function () {
                     .end(done);
             });
 
+    });
+
+    it('this should get order by user_id', function (done) {
+        request(app)
+            .post('/api/orders')
+            .set('Authorization', 'Bearer ' + token)
+            .send(mockup)
+            .expect(200)
+            .end(function (err, res) {
+                if (err) {
+                    return done(err);
+                }
+                var resp = res.body;
+
+                var user_id = {
+                    user_id: 'user001'
+                }
+                request(app)
+                    .get('/api/order/user/' + user_id.user_id)
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(200)
+                    .end(function (err, res) {
+                        if (err) {
+                            return done(err);
+                        }
+                        var resp = res.body;
+                        assert.equal(resp.status, 200);
+                        assert.notEqual(resp.data[0].orderno, "");
+                        assert.equal(resp.data[0].customer.firstname, mockup.customer.firstname);
+                        assert.equal(resp.data[0].customer.lastname, mockup.customer.lastname);
+                        assert.equal(resp.data[0].customer.tel, mockup.customer.tel);
+                        assert.equal(resp.data[0].items[0].name, mockup.items[0].name);
+                        assert.equal(resp.data[0].items[0].option[0].name, mockup.items[0].option[0].name);
+                        assert.equal(resp.data[0].items[0].option[0].value, mockup.items[0].option[0].value);
+                        assert.equal(resp.data[0].items[0].qty, mockup.items[0].qty);
+                        assert.equal(resp.data[0].items[0].price, mockup.items[0].price);
+                        assert.equal(resp.data[0].items[0].amount, mockup.items[0].amount);
+                        assert.equal(resp.data[0].totalamount, mockup.totalamount);
+                        assert.equal(resp.data[0].user_id, user_id.user_id);
+                        done();
+                    })
+            })
+    });
+
+    it('this should get order by team', function (done) {
+        var order1 = new Order({
+            customer: {
+                firstname: 'Nutshapon',
+                lastname: 'Lertlaosakun',
+                tel: '025337172',
+                address: '59/337 ต.คูคต อ.ลำลูกกา จ.ปทุมธานี'
+            },
+            items: [
+                {
+                    name: 'ลิปติก',
+                    option: [
+                        {
+                            name: 'สี',
+                            value: 'แดง'
+                        }
+                    ],
+                    qty: 2,
+                    price: 100,
+                    amount: 200
+                }
+            ],
+            totalamount: 200,
+            user_id: "user001"
+        });
+        var order2 = new Order({
+            customer: {
+                firstname: 'ponlawath',
+                lastname: 'changkeb',
+                tel: '0553568978',
+                address: '11/5897 ต.คูคต อ.ลำลูกกา จ.ปทุมธานี'
+            },
+            items: [
+                {
+                    name: 'แป้ง',
+                    option: [
+                        {
+                            name: 'สี',
+                            value: 'ขาว'
+                        }
+                    ],
+                    qty: 4,
+                    price: 70,
+                    amount: 50
+                }
+            ],
+            totalamount: 280,
+            user_id: "user002"
+        })
+        var order3 = new Order({
+            customer: {
+                firstname: 'nutnut',
+                lastname: 'lertlao',
+                tel: '05359876',
+                address: '25/445 ต.คูคต อ.ลำลูกกา จ.ปทุมธานี'
+            },
+            items: [
+                {
+                    name: 'ลิปติก',
+                    option: [
+                        {
+                            name: 'สี',
+                            value: 'น้ำเงิน'
+                        }
+                    ],
+                    qty: 5,
+                    price: 100,
+                    amount: 150
+                }
+            ],
+            totalamount: 500,
+            user_id: "user003"
+        })
+
+        order1.save(function (err, ord1) {
+            order2.save(function (err, ord2) {
+                order3.save(function (err, ord3) {
+                    if (err) {
+                        return done(err)
+                    }
+                    var teammember = [order1.user_id, order3.user_id]
+                    request(app)
+                        .post('/api/order/team')
+                        .set('Authorization', 'Bearer ' + token)
+                        .send(teammember)
+                        .expect(200)
+                        .end(function (err, res) {
+                            if (err) {
+                                return done(err);
+                            }
+                            var resp = res.body;
+                            // console.log(resp);
+                            assert.equal(resp.data[0].user_id, order1.user_id)
+                            assert.equal(resp.data[0].totalamount, order1.totalamount)
+                            assert.equal(resp.data[0].customer.firstname, order1.customer.firstname)
+                            assert.equal(resp.data[0].customer.lastname, order1.customer.lastname)
+                            assert.equal(resp.data[0].customer.tel, order1.customer.tel)
+                            assert.equal(resp.data[0].customer.address, order1.customer.address)
+                            assert.equal(resp.data[0].items[0].name, order1.items[0].name)
+                            assert.equal(resp.data[0].items[0].qty, order1.items[0].qty)
+                            assert.equal(resp.data[0].items[0].price, order1.items[0].price)
+                            assert.equal(resp.data[0].items[0].amount, order1.items[0].amount)
+                            assert.equal(resp.data[1].user_id, order3.user_id)
+                            assert.equal(resp.data[1].totalamount, order3.totalamount)
+                            assert.equal(resp.data[1].customer.firstname, order3.customer.firstname)
+                            assert.equal(resp.data[1].customer.lastname, order3.customer.lastname)
+                            assert.equal(resp.data[1].customer.tel, order3.customer.tel)
+                            assert.equal(resp.data[1].customer.address, order3.customer.address)
+                            assert.equal(resp.data[1].items[0].name, order3.items[0].name)
+                            assert.equal(resp.data[1].items[0].qty, order3.items[0].qty)
+                            assert.equal(resp.data[1].items[0].price, order3.items[0].price)
+                            assert.equal(resp.data[1].items[0].amount, order3.items[0].amount)
+                            done();
+                        });
+                })
+            })
+        })
     });
 
     afterEach(function (done) {
