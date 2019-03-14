@@ -142,4 +142,26 @@ exports.getByUserID = function (req, res, next, user_id) {
             next();
         };
     });
+};
+
+exports.getOrderByTeam = function (req, res, next) {
+    Order.find({ user_id: req.body }, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            req.resualt = datas
+            next();
+        }
+    })
+
+}
+
+exports.returnData = function (req, res) {
+    res.jsonp({
+        status: 200,
+        data: req.resualt
+    });
 }
