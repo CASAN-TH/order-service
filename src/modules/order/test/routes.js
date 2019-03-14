@@ -16,7 +16,6 @@ describe('Order CRUD routes tests', function () {
 
     before(function (done) {
         mockup = {
-
             customer: {
                 firstname: 'Nutshapon',
                 lastname: 'Lertlaosakun',
@@ -277,6 +276,48 @@ describe('Order CRUD routes tests', function () {
             });
 
     });
+
+    it('this should get order by user_id', function (done) {
+        request(app)
+            .post('/api/orders')
+            .set('Authorization', 'Bearer ' + token)
+            .send(mockup)
+            .expect(200)
+            .end(function (err, res) {
+                if (err) {
+                    return done(err);
+                }
+                var resp = res.body;
+
+                var user_id = {
+                    user_id: 'user001'
+                }
+                request(app)
+                    .get('/api/orders/user/' + user_id.user_id)
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(200)
+                    .end(function (err, res) {
+                        if (err) {
+                            return done(err);
+                        }
+                        var resp = res.body;
+                        assert.equal(resp.status, 200);
+                        assert.notEqual(resp.data[0].orderno, "");
+                        assert.equal(resp.data[0].customer.firstname, mockup.customer.firstname);
+                        assert.equal(resp.data[0].customer.lastname, mockup.customer.lastname);
+                        assert.equal(resp.data[0].customer.tel, mockup.customer.tel);
+                        assert.equal(resp.data[0].items[0].name, mockup.items[0].name);
+                        assert.equal(resp.data[0].items[0].option[0].name, mockup.items[0].option[0].name);
+                        assert.equal(resp.data[0].items[0].option[0].value, mockup.items[0].option[0].value);
+                        assert.equal(resp.data[0].items[0].qty, mockup.items[0].qty);
+                        assert.equal(resp.data[0].items[0].price, mockup.items[0].price);
+                        assert.equal(resp.data[0].items[0].amount, mockup.items[0].amount);
+                        assert.equal(resp.data[0].totalamount, mockup.totalamount);
+                        assert.equal(resp.data[0].user_id, user_id.user_id);
+                        done();
+                    })
+            })
+    })
 
     afterEach(function (done) {
         Order.remove().exec(done);
