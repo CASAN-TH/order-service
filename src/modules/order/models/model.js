@@ -36,12 +36,12 @@ var OrderSchema = new Schema({
                             },
                             value: {
                                 type: String
+                            },
+                            qty: {
+                                type: Number
                             }
                         }
                     ]
-                },
-                qty: {
-                    type: Number
                 },
                 price: {
                     type: Number
@@ -57,6 +57,15 @@ var OrderSchema = new Schema({
     },
     user_id: {
         type: String
+    },
+    paymenttype: {
+        type: [
+            {
+                name: {
+                    type: String
+                }
+            }
+        ]
     },
     created: {
         type: Date,

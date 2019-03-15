@@ -28,16 +28,21 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'แดง'
+                            value: 'แดง',
+                            qty: 2,
                         }
                     ],
-                    qty: 2,
                     price: 100,
                     amount: 200
                 }
             ],
             totalamount: 200,
-            user_id: "user001"
+            user_id: "user001",
+            paymenttype: [
+                {
+                    name: "ปลายทาง"
+                }
+            ]
         };
         credentials = {
             username: 'username',
@@ -97,11 +102,12 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data.items[0].name, mockup.items[0].name);
                         assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
                         assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
-                        assert.equal(resp.data.items[0].qty, mockup.items[0].qty);
+                        assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
                         assert.equal(resp.data.items[0].price, mockup.items[0].price);
                         assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                         assert.equal(resp.data.totalamount, mockup.totalamount);
                         assert.equal(resp.data.user_id, mockup.user_id);
+                        assert.equal(resp.data.paymenttype[0].name, mockup.paymenttype[0].name);
                         done();
                     });
             });
@@ -127,11 +133,12 @@ describe('Order CRUD routes tests', function () {
                 assert.equal(resp.data.items[0].name, mockup.items[0].name);
                 assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
                 assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
-                assert.equal(resp.data.items[0].qty, mockup.items[0].qty);
+                assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
                 assert.equal(resp.data.items[0].price, mockup.items[0].price);
                 assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                 assert.equal(resp.data.totalamount, mockup.totalamount);
                 assert.equal(resp.data.user_id, mockup.user_id);
+                assert.equal(resp.data.paymenttype[0].name, mockup.paymenttype[0].name);
                 done();
             });
     });
@@ -169,10 +176,11 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data.items[0].name, mockup.items[0].name);
                         assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
                         assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
-                        assert.equal(resp.data.items[0].qty, mockup.items[0].qty);
+                        assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
                         assert.equal(resp.data.items[0].price, mockup.items[0].price);
                         assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                         assert.equal(resp.data.totalamount, mockup.totalamount);
+                        assert.equal(resp.data.paymenttype[0].name, mockup.paymenttype[0].name);
                         done();
                     });
             });
@@ -309,11 +317,12 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data[0].items[0].name, mockup.items[0].name);
                         assert.equal(resp.data[0].items[0].option[0].name, mockup.items[0].option[0].name);
                         assert.equal(resp.data[0].items[0].option[0].value, mockup.items[0].option[0].value);
-                        assert.equal(resp.data[0].items[0].qty, mockup.items[0].qty);
+                        assert.equal(resp.data[0].items[0].option[0].qty, mockup.items[0].option[0].qty);
                         assert.equal(resp.data[0].items[0].price, mockup.items[0].price);
                         assert.equal(resp.data[0].items[0].amount, mockup.items[0].amount);
                         assert.equal(resp.data[0].totalamount, mockup.totalamount);
                         assert.equal(resp.data[0].user_id, user_id.user_id);
+                        assert.equal(resp.data[0].paymenttype[0].name, mockup.paymenttype[0].name);
                         done();
                     })
             })
@@ -333,16 +342,21 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'แดง'
+                            value: 'แดง',
+                            qty: 2,
                         }
                     ],
-                    qty: 2,
                     price: 100,
                     amount: 200
                 }
             ],
             totalamount: 200,
-            user_id: "user001"
+            user_id: "user001",
+            paymenttype: [
+                {
+                    name: "ปลายทาง"
+                }
+            ]
         });
         var order2 = new Order({
             customer: {
@@ -357,16 +371,21 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'ขาว'
+                            value: 'ขาว',
+                            qty: 4,
                         }
                     ],
-                    qty: 4,
                     price: 70,
                     amount: 50
                 }
             ],
             totalamount: 280,
-            user_id: "user002"
+            user_id: "user002",
+            paymenttype: [
+                {
+                    name: "ปลายทาง"
+                }
+            ]
         })
         var order3 = new Order({
             customer: {
@@ -381,16 +400,21 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'น้ำเงิน'
+                            value: 'น้ำเงิน',
+                            qty: 5,
                         }
                     ],
-                    qty: 5,
                     price: 100,
                     amount: 150
                 }
             ],
             totalamount: 500,
-            user_id: "user003"
+            user_id: "user003",
+            paymenttype: [
+                {
+                    name: "ปลายทาง"
+                }
+            ]
         })
 
         order1.save(function (err, ord1) {
@@ -413,24 +437,27 @@ describe('Order CRUD routes tests', function () {
                             // console.log(resp);
                             assert.equal(resp.data[0].user_id, order1.user_id)
                             assert.equal(resp.data[0].totalamount, order1.totalamount)
+                            assert.equal(resp.data[0].paymenttype[0].name, order1.paymenttype[0].name)
                             assert.equal(resp.data[0].customer.firstname, order1.customer.firstname)
                             assert.equal(resp.data[0].customer.lastname, order1.customer.lastname)
                             assert.equal(resp.data[0].customer.tel, order1.customer.tel)
                             assert.equal(resp.data[0].customer.address, order1.customer.address)
                             assert.equal(resp.data[0].items[0].name, order1.items[0].name)
-                            assert.equal(resp.data[0].items[0].qty, order1.items[0].qty)
+                            assert.equal(resp.data[0].items[0].option[0].qty, order1.items[0].option[0].qty)
                             assert.equal(resp.data[0].items[0].price, order1.items[0].price)
                             assert.equal(resp.data[0].items[0].amount, order1.items[0].amount)
                             assert.equal(resp.data[1].user_id, order3.user_id)
                             assert.equal(resp.data[1].totalamount, order3.totalamount)
+                            assert.equal(resp.data[1].paymenttype[0].name, order1.paymenttype[0].name)
                             assert.equal(resp.data[1].customer.firstname, order3.customer.firstname)
                             assert.equal(resp.data[1].customer.lastname, order3.customer.lastname)
                             assert.equal(resp.data[1].customer.tel, order3.customer.tel)
                             assert.equal(resp.data[1].customer.address, order3.customer.address)
                             assert.equal(resp.data[1].items[0].name, order3.items[0].name)
-                            assert.equal(resp.data[1].items[0].qty, order3.items[0].qty)
+                            assert.equal(resp.data[1].items[0].option[0].qty, order3.items[0].option[0].qty)
                             assert.equal(resp.data[1].items[0].price, order3.items[0].price)
                             assert.equal(resp.data[1].items[0].amount, order3.items[0].amount)
+
                             done();
                         });
                 })
