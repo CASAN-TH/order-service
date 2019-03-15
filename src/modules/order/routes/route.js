@@ -17,10 +17,10 @@ module.exports = function (app) {
         .put(controller.update)
         .delete(controller.delete);
 
-    app.route('/api/order/user/:userId') //get order เฉพาะของตัวเอง
+    app.route('/api/order/user/:userId').all(policy.isAllowed) //get order เฉพาะของตัวเอง
         .get(controller.read)
 
-    app.route('/api/order/team')  //get order ทั้งหมดของทีม
+    app.route('/api/order/team').all(policy.isAllowed)  //get order ทั้งหมดของทีม
         .post(
             controller.getOrderByTeam,
             controller.returnData
