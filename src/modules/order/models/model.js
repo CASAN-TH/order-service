@@ -59,13 +59,12 @@ var OrderSchema = new Schema({
         type: String
     },
     paymenttype: {
-        type: [
-            {
-                name: {
-                    type: String
-                }
+        type: {
+            name: {
+                type: String
             }
-        ]
+        }
+
     },
     created: {
         type: Date,
