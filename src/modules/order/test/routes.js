@@ -20,7 +20,17 @@ describe('Order CRUD routes tests', function () {
                 firstname: 'Nutshapon',
                 lastname: 'Lertlaosakun',
                 tel: '025337172',
-                address: '59/337 ต.คูคต อ.ลำลูกกา จ.ปทุมธานี'
+                address: [
+                    {
+                        houseno: "55/7",
+                        village: "casa-city",
+                        street: "lumlukka Road",
+                        subdistrict: "บึงคำพร้อย",
+                        district: "lumlukka",
+                        province: "phathumthani",
+                        zipcode: "12150"
+                    }
+                ]
             },
             items: [
                 {
@@ -333,7 +343,17 @@ describe('Order CRUD routes tests', function () {
                 firstname: 'Nutshapon',
                 lastname: 'Lertlaosakun',
                 tel: '025337172',
-                address: '59/337 ต.คูคต อ.ลำลูกกา จ.ปทุมธานี'
+                address: [
+                    {
+                        houseno: "55/7",
+                        village: "casa-city",
+                        street: "lumlukka Road",
+                        subdistrict: "บึงคำพร้อย",
+                        district: "lumlukka",
+                        province: "phathumthani",
+                        zipcode: "12150"
+                    }
+                ]
             },
             items: [
                 {
@@ -362,7 +382,17 @@ describe('Order CRUD routes tests', function () {
                 firstname: 'ponlawath',
                 lastname: 'changkeb',
                 tel: '0553568978',
-                address: '11/5897 ต.คูคต อ.ลำลูกกา จ.ปทุมธานี'
+                address: [
+                    {
+                        houseno: "55/7",
+                        village: "casa-city",
+                        street: "lumlukka Road",
+                        subdistrict: "บึงคำพร้อย",
+                        district: "lumlukka",
+                        province: "phathumthani",
+                        zipcode: "12150"
+                    }
+                ]
             },
             items: [
                 {
@@ -391,7 +421,17 @@ describe('Order CRUD routes tests', function () {
                 firstname: 'nutnut',
                 lastname: 'lertlao',
                 tel: '05359876',
-                address: '25/445 ต.คูคต อ.ลำลูกกา จ.ปทุมธานี'
+                address: [
+                    {
+                        houseno: "55/7",
+                        village: "casa-city",
+                        street: "lumlukka Road",
+                        subdistrict: "บึงคำพร้อย",
+                        district: "lumlukka",
+                        province: "phathumthani",
+                        zipcode: "12150"
+                    }
+                ]
             },
             items: [
                 {
@@ -440,7 +480,7 @@ describe('Order CRUD routes tests', function () {
                             assert.equal(resp.data[0].customer.firstname, order1.customer.firstname)
                             assert.equal(resp.data[0].customer.lastname, order1.customer.lastname)
                             assert.equal(resp.data[0].customer.tel, order1.customer.tel)
-                            assert.equal(resp.data[0].customer.address, order1.customer.address)
+                            assert.equal(resp.data[0].customer.address[0].houseno, order1.customer.address[0].houseno)
                             assert.equal(resp.data[0].items[0].name, order1.items[0].name)
                             assert.equal(resp.data[0].items[0].option[0].qty, order1.items[0].option[0].qty)
                             assert.equal(resp.data[0].items[0].price, order1.items[0].price)
@@ -451,7 +491,7 @@ describe('Order CRUD routes tests', function () {
                             assert.equal(resp.data[1].customer.firstname, order3.customer.firstname)
                             assert.equal(resp.data[1].customer.lastname, order3.customer.lastname)
                             assert.equal(resp.data[1].customer.tel, order3.customer.tel)
-                            assert.equal(resp.data[1].customer.address, order3.customer.address)
+                            assert.equal(resp.data[1].customer.address[0].houseno, order3.customer.address[0].houseno)
                             assert.equal(resp.data[1].items[0].name, order3.items[0].name)
                             assert.equal(resp.data[1].items[0].option[0].qty, order3.items[0].option[0].qty)
                             assert.equal(resp.data[1].items[0].price, order3.items[0].price)
