@@ -19,8 +19,32 @@ var OrderSchema = new Schema({
             type: String
         },
         address: {
-            type: String
-        }
+            type: [
+                {
+                    houseno: {
+                        type: String
+                    },
+                    village: {
+                        type: String
+                    },
+                    street: {
+                        type: String
+                    },
+                    subdistrict: {
+                        type: String
+                    },
+                    district: {
+                        type: String
+                    },
+                    province: {
+                        type: String
+                    },
+                    zipcode: {
+                        type: String
+                    }
+                }
+            ]
+        },
     },
     items: {
         type: [
