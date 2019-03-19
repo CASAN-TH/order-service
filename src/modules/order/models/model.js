@@ -35,11 +35,18 @@ var OrderSchema = new Schema({
                                 type: String
                             },
                             value: {
-                                type: String
+                                type: [
+                                    {
+                                        name: {
+                                            type: String
+                                        },
+                                        qty: {
+                                            type: Number
+                                        }
+                                    }
+                                ]
                             },
-                            qty: {
-                                type: Number
-                            }
+
                         }
                     ]
                 },
