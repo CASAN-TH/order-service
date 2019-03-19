@@ -341,6 +341,7 @@ describe('Order CRUD routes tests', function () {
 
     it('this should get order by team', function (done) {
         var order1 = new Order({
+            team_id: 'aaa',
             customer: {
                 firstname: 'Nutshapon',
                 lastname: 'Lertlaosakun',
@@ -382,6 +383,7 @@ describe('Order CRUD routes tests', function () {
 
         });
         var order2 = new Order({
+            team_id: 'aaa',
             customer: {
                 firstname: 'ponlawath',
                 lastname: 'changkeb',
@@ -423,6 +425,7 @@ describe('Order CRUD routes tests', function () {
 
         })
         var order3 = new Order({
+            team_id: 'aaa',
             customer: {
                 firstname: 'nutnut',
                 lastname: 'lertlao',
@@ -449,7 +452,7 @@ describe('Order CRUD routes tests', function () {
                                 name: '#01',
                                 qty: 2,
                             }],
-                     
+
                         }
                     ],
                     price: 100,
@@ -471,14 +474,10 @@ describe('Order CRUD routes tests', function () {
                     if (err) {
                         return done(err)
                     }
-                    var teammember = [
-                        {userid:order1.user_id},
-                        {userid:order3.user_id}
-                        ]
+                    var idteam = 'aaa'
                     request(app)
-                        .post('/api/order/team')
+                        .get('/api/order/team/' + idteam)
                         .set('Authorization', 'Bearer ' + token)
-                        .send(teammember)
                         .expect(200)
                         .end(function (err, res) {
                             if (err) {
@@ -497,17 +496,17 @@ describe('Order CRUD routes tests', function () {
                             // assert.equal(resp.data[0].items[0].option[0].qty, order1.items[0].option[0].qty)
                             assert.equal(resp.data[0].items[0].price, order1.items[0].price)
                             assert.equal(resp.data[0].items[0].amount, order1.items[0].amount)
-                            assert.equal(resp.data[1].user_id, order3.user_id)
-                            assert.equal(resp.data[1].totalamount, order3.totalamount)
+                            assert.equal(resp.data[1].user_id, order2.user_id)
+                            assert.equal(resp.data[1].totalamount, order2.totalamount)
                             assert.equal(resp.data[1].paymenttype.name, order1.paymenttype.name)
-                            assert.equal(resp.data[1].customer.firstname, order3.customer.firstname)
-                            assert.equal(resp.data[1].customer.lastname, order3.customer.lastname)
-                            assert.equal(resp.data[1].customer.tel, order3.customer.tel)
-                            assert.equal(resp.data[1].customer.address[0].houseno, order3.customer.address[0].houseno)
-                            assert.equal(resp.data[1].items[0].name, order3.items[0].name)
+                            assert.equal(resp.data[1].customer.firstname, order2.customer.firstname)
+                            assert.equal(resp.data[1].customer.lastname, order2.customer.lastname)
+                            assert.equal(resp.data[1].customer.tel, order2.customer.tel)
+                            assert.equal(resp.data[1].customer.address[0].houseno, order2.customer.address[0].houseno)
+                            assert.equal(resp.data[1].items[0].name, order2.items[0].name)
                             // assert.equal(resp.data[1].items[0].option[0].qty, order3.items[0].option[0].qty)
-                            assert.equal(resp.data[1].items[0].price, order3.items[0].price)
-                            assert.equal(resp.data[1].items[0].amount, order3.items[0].amount)
+                            assert.equal(resp.data[1].items[0].price, order2.items[0].price)
+                            assert.equal(resp.data[1].items[0].amount, order2.items[0].amount)
 
                             done();
                         });
