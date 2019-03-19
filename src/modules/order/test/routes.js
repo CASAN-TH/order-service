@@ -38,8 +38,10 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'แดง',
-                            qty: 2,
+                            value: [{
+                                name: '#01',
+                                qty: 2,
+                            }],
                         }
                     ],
                     price: 100,
@@ -49,9 +51,9 @@ describe('Order CRUD routes tests', function () {
             totalamount: 200,
             user_id: "user001",
             paymenttype:
-                {
-                    name: "ปลายทาง"
-                }
+            {
+                name: "ปลายทาง"
+            }
         };
         credentials = {
             username: 'username',
@@ -110,8 +112,8 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data.customer.tel, mockup.customer.tel);
                         assert.equal(resp.data.items[0].name, mockup.items[0].name);
                         assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
-                        assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
-                        assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
+                        assert.equal(resp.data.items[0].option[0].value[0].name, mockup.items[0].option[0].value[0].name);
+                        assert.equal(resp.data.items[0].option[0].value[0].qty, mockup.items[0].option[0].value[0].qty);
                         assert.equal(resp.data.items[0].price, mockup.items[0].price);
                         assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                         assert.equal(resp.data.totalamount, mockup.totalamount);
@@ -141,8 +143,8 @@ describe('Order CRUD routes tests', function () {
                 assert.equal(resp.data.customer.tel, mockup.customer.tel);
                 assert.equal(resp.data.items[0].name, mockup.items[0].name);
                 assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
-                assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
-                assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
+                assert.equal(resp.data.items[0].option[0].value[0].name, mockup.items[0].option[0].value[0].name);
+                assert.equal(resp.data.items[0].option[0].value[0].qty, mockup.items[0].option[0].value[0].qty);
                 assert.equal(resp.data.items[0].price, mockup.items[0].price);
                 assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                 assert.equal(resp.data.totalamount, mockup.totalamount);
@@ -184,8 +186,8 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data.customer.tel, mockup.customer.tel);
                         assert.equal(resp.data.items[0].name, mockup.items[0].name);
                         assert.equal(resp.data.items[0].option[0].name, mockup.items[0].option[0].name);
-                        assert.equal(resp.data.items[0].option[0].value, mockup.items[0].option[0].value);
-                        assert.equal(resp.data.items[0].option[0].qty, mockup.items[0].option[0].qty);
+                        assert.equal(resp.data.items[0].option[0].value[0].name, mockup.items[0].option[0].value[0].name);
+                        assert.equal(resp.data.items[0].option[0].value[0].qty, mockup.items[0].option[0].value[0].qty);
                         assert.equal(resp.data.items[0].price, mockup.items[0].price);
                         assert.equal(resp.data.items[0].amount, mockup.items[0].amount);
                         assert.equal(resp.data.totalamount, mockup.totalamount);
@@ -325,8 +327,8 @@ describe('Order CRUD routes tests', function () {
                         assert.equal(resp.data[0].customer.tel, mockup.customer.tel);
                         assert.equal(resp.data[0].items[0].name, mockup.items[0].name);
                         assert.equal(resp.data[0].items[0].option[0].name, mockup.items[0].option[0].name);
-                        assert.equal(resp.data[0].items[0].option[0].value, mockup.items[0].option[0].value);
-                        assert.equal(resp.data[0].items[0].option[0].qty, mockup.items[0].option[0].qty);
+                        // assert.equal(resp.data[0].items[0].option[0].value, mockup.items[0].option[0].value);
+                        // assert.equal(resp.data[0].items[0].option[0].qty, mockup.items[0].option[0].qty);
                         assert.equal(resp.data[0].items[0].price, mockup.items[0].price);
                         assert.equal(resp.data[0].items[0].amount, mockup.items[0].amount);
                         assert.equal(resp.data[0].totalamount, mockup.totalamount);
@@ -361,8 +363,10 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'แดง',
-                            qty: 2,
+                            value: [{
+                                name: '#01',
+                                qty: 2,
+                            }],
                         }
                     ],
                     price: 100,
@@ -371,11 +375,11 @@ describe('Order CRUD routes tests', function () {
             ],
             totalamount: 200,
             user_id: "user001",
-            paymenttype: 
-                {
-                    name: "ปลายทาง"
-                }
-            
+            paymenttype:
+            {
+                name: "ปลายทาง"
+            }
+
         });
         var order2 = new Order({
             customer: {
@@ -400,8 +404,10 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'ขาว',
-                            qty: 4,
+                            value: [{
+                                name: '#01',
+                                qty: 2,
+                            }],
                         }
                     ],
                     price: 70,
@@ -410,11 +416,11 @@ describe('Order CRUD routes tests', function () {
             ],
             totalamount: 280,
             user_id: "user002",
-            paymenttype: 
-                {
-                    name: "ปลายทาง"
-                }
-            
+            paymenttype:
+            {
+                name: "ปลายทาง"
+            }
+
         })
         var order3 = new Order({
             customer: {
@@ -439,8 +445,11 @@ describe('Order CRUD routes tests', function () {
                     option: [
                         {
                             name: 'สี',
-                            value: 'น้ำเงิน',
-                            qty: 5,
+                            value: [{
+                                name: '#01',
+                                qty: 2,
+                            }],
+                     
                         }
                     ],
                     price: 100,
@@ -449,11 +458,11 @@ describe('Order CRUD routes tests', function () {
             ],
             totalamount: 500,
             user_id: "user003",
-            paymenttype: 
-                {
-                    name: "ปลายทาง"
-                }
-            
+            paymenttype:
+            {
+                name: "ปลายทาง"
+            }
+
         })
 
         order1.save(function (err, ord1) {
@@ -482,7 +491,7 @@ describe('Order CRUD routes tests', function () {
                             assert.equal(resp.data[0].customer.tel, order1.customer.tel)
                             assert.equal(resp.data[0].customer.address[0].houseno, order1.customer.address[0].houseno)
                             assert.equal(resp.data[0].items[0].name, order1.items[0].name)
-                            assert.equal(resp.data[0].items[0].option[0].qty, order1.items[0].option[0].qty)
+                            // assert.equal(resp.data[0].items[0].option[0].qty, order1.items[0].option[0].qty)
                             assert.equal(resp.data[0].items[0].price, order1.items[0].price)
                             assert.equal(resp.data[0].items[0].amount, order1.items[0].amount)
                             assert.equal(resp.data[1].user_id, order3.user_id)
@@ -493,7 +502,7 @@ describe('Order CRUD routes tests', function () {
                             assert.equal(resp.data[1].customer.tel, order3.customer.tel)
                             assert.equal(resp.data[1].customer.address[0].houseno, order3.customer.address[0].houseno)
                             assert.equal(resp.data[1].items[0].name, order3.items[0].name)
-                            assert.equal(resp.data[1].items[0].option[0].qty, order3.items[0].option[0].qty)
+                            // assert.equal(resp.data[1].items[0].option[0].qty, order3.items[0].option[0].qty)
                             assert.equal(resp.data[1].items[0].price, order3.items[0].price)
                             assert.equal(resp.data[1].items[0].amount, order3.items[0].amount)
 
