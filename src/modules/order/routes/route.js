@@ -24,10 +24,15 @@ module.exports = function (app) {
         .get(
             controller.returnData
         )
+    app.route('/api/order/sendorder/:team').all(policy.isAllowed)
+        .put(
+            controller.returnData
+        )
 
     app.param('orderId', controller.getByID);
     app.param('userId', controller.getByUserID);
     app.param('teamId', controller.getOrderByTeam)
+    app.param('team', controller.updateOrder)
 
     /**
      * Message Queue
