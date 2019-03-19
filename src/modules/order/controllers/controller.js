@@ -150,15 +150,9 @@ exports.getByUserID = function (req, res, next, user_id) {
     });
 };
 
-exports.getOrderByTeam = function (req, res, next) {
+exports.getOrderByTeam = function (req, res, next, id) {
     // console.log(req.body)
-    var a = [];
-    for (let index = 0; index < req.body.length; index++) {
-        const element = req.body[index];
-        a.push(element.userid)
-    }
-    // console.log(a)
-    Order.find({ user_id: a }, function (err, datas) {
+    Order.find({ team_id: id }, function (err, datas) {
         if (err) {
             return res.status(400).send({
                 status: 400,

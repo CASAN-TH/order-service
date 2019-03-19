@@ -29,7 +29,7 @@ exports.invokeRolesPolicies = function() {
           permissions: "*"
         },
         {
-          resources: "/api/order/team",
+          resources: "/api/order/team/:teamId",
           permissions: "*"
         }
       ]
