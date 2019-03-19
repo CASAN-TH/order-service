@@ -24,6 +24,7 @@ exports.getList = function (req, res) {
 
 exports.create = function (req, res) {
     var newOrder = new Order(req.body);
+    var customerData = req.body.customer
     newOrder.createby = req.user;
     newOrder.save(function (err, data) {
         if (err) {
@@ -32,6 +33,7 @@ exports.create = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
+            mq.publish('Customer', 'created', JSON.stringify(customerData));
             res.jsonp({
                 status: 200,
                 data: data
