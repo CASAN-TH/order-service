@@ -20,14 +20,14 @@ module.exports = function (app) {
     app.route('/api/order/user/:userId').all(policy.isAllowed) //get order เฉพาะของตัวเอง
         .get(controller.read)
 
-    app.route('/api/order/team').all(policy.isAllowed)  //get order ทั้งหมดของทีม
-        .post(
-            controller.getOrderByTeam,
+    app.route('/api/order/team/:teamId').all(policy.isAllowed)  //get order ทั้งหมดของทีม
+        .get(
             controller.returnData
         )
 
     app.param('orderId', controller.getByID);
     app.param('userId', controller.getByUserID);
+    app.param('teamId', controller.getOrderByTeam)
 
     /**
      * Message Queue

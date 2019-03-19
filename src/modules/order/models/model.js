@@ -8,6 +8,9 @@ var OrderSchema = new Schema({
     orderno: {
         type: String,
     },
+    team_id:{
+        type:String,
+    },
     customer: {
         firstname: {
             type: String
