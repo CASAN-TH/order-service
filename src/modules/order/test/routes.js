@@ -16,6 +16,8 @@ describe('Order CRUD routes tests', function () {
 
     before(function (done) {
         mockup = {
+            orderstatus: false,
+            team_id: 'teamid',
             customer: {
                 firstname: 'Nutshapon',
                 lastname: 'Lertlaosakun',
@@ -514,6 +516,85 @@ describe('Order CRUD routes tests', function () {
             })
         })
     });
+
+    it('should be owner send order', function (done) {
+
+        var order1 = new Order({
+            team_id: 'teamid',
+            customer: {
+                firstname: 'Nutshapon',
+                lastname: 'Lertlaosakun',
+                tel: '025337172',
+                address: [
+                    {
+                        houseno: "55/7",
+                        village: "casa-city",
+                        street: "lumlukka Road",
+                        subdistrict: "บึงคำพร้อย",
+                        district: "lumlukka",
+                        province: "phathumthani",
+                        zipcode: "12150"
+                    }
+                ]
+            },
+            items: [
+                {
+                    name: 'ลิปติก',
+                    option: [
+                        {
+                            name: 'สี',
+                            value: [{
+                                name: '#01',
+                                qty: 2,
+                            }],
+                        }
+                    ],
+                    price: 100,
+                    amount: 200
+                }
+            ],
+            totalamount: 200,
+            user_id: "user001",
+            paymenttype:
+            {
+                name: "ปลายทาง"
+            }
+
+        });
+        order1.save(function () {
+            request(app)
+                .post('/api/orders')
+                .set('Authorization', 'Bearer ' + token)
+                .send(mockup)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        return done(err);
+                    }
+                    var resp = res.body;
+                    // console.log(resp.data)
+                    var update = {
+                        orderstatus: true
+                    }
+                    request(app)
+                        .put('/api/order/sendorder/' + resp.data.team_id)
+                        .set('Authorization', 'Bearer ' + token)
+                        .send(update)
+                        .expect(200)
+                        .end(function (err, res) {
+                            if (err) {
+                                return done(err);
+                            }
+                            var resp = res.body;
+
+                            done();
+                        });
+                });
+        })
+
+
+    });
+
 
     afterEach(function (done) {
         Order.remove().exec(done);
