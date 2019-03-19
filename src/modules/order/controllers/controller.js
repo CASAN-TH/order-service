@@ -33,7 +33,11 @@ exports.create = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            mq.publish('Customer', 'created', JSON.stringify(customerData));
+            var dataSend = {
+                customer: customerData,
+                userCreate: req.user
+            }
+            mq.publish('Customer', 'created', JSON.stringify(dataSend));
             res.jsonp({
                 status: 200,
                 data: data
