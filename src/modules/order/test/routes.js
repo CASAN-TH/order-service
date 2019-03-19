@@ -471,7 +471,10 @@ describe('Order CRUD routes tests', function () {
                     if (err) {
                         return done(err)
                     }
-                    var teammember = [order1.user_id, order3.user_id]
+                    var teammember = [
+                        {userid:order1.user_id},
+                        {userid:order3.user_id}
+                        ]
                     request(app)
                         .post('/api/order/team')
                         .set('Authorization', 'Bearer ' + token)
