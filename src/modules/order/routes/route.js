@@ -31,8 +31,8 @@ module.exports = function (app) {
 
     app.param('orderId', controller.getByID);
     app.param('userId', controller.getByUserID);
-    app.param('teamId', controller.getOrderByTeam)
-    app.param('team', controller.updateOrder)
+    app.param('teamId', controller.getOrderByTeam);
+    app.param('team', controller.updateOrder);
 
     /**
      * Message Queue

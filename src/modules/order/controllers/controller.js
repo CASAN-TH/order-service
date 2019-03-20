@@ -168,30 +168,16 @@ exports.getOrderByTeam = function (req, res, next, id) {
 
 exports.updateOrder = function (req, res, next, id) {
 
-    Order.find({ team_id: id }, function (err, datas) {
+    Order.updateMany({ team_id: id }, { $set: { orderstatus: true } }, { upsert: true }, function (err, datas) {
         if (err) {
             return res.status(400).send({
                 status: 400,
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            req.resu = datas
-            var b = [];
-            // console.log(req.resu)
-            for (let i = 0; i < req.resu.length; i++) {
-                var element = req.resu[i];
-                // console.log(req.resu[i])
-                // req.resu[i].orderstatus = true
-                b.push(req.resu[i]._id)
-
-            }
-            // console.log(req.resu)
-            Order.updateMany({ _id: b }, { $set: { orderstatus: true} },{new:true}, function (err, data) {
-                console.log(data)
-            })
-            console.log(b)
-            // console.log(req.resu.length)
-            next()
+            console.log(datas)
+            req.resualt = datas
+            next();
         }
     })
 }
