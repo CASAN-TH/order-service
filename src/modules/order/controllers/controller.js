@@ -137,7 +137,7 @@ exports.getByUserID = function (req, res, next, user_id) {
     //     });
     // }
 
-    Order.find({ user_id: user_id }, function (err, data) {
+    Order.find({ user_id: user_id, orderstatus: false }, function (err, data) {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -152,7 +152,7 @@ exports.getByUserID = function (req, res, next, user_id) {
 
 exports.getOrderByTeam = function (req, res, next, id) {
 
-    Order.find({ team_id: id }, function (err, datas) {
+    Order.find({ team_id: id, orderstatus: false }, function (err, datas) {
         if (err) {
             return res.status(400).send({
                 status: 400,
