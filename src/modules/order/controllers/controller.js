@@ -182,6 +182,29 @@ exports.updateOrder = function (req, res, next, id) {
     })
 }
 
+exports.orderHistory = function (req, res, next, id) {
+
+    // if (!mongoose.Types.ObjectId.isValid(id)) {
+    //     return res.status(400).send({
+    //         status: 400,
+    //         message: 'Id is invalid'
+    //     });
+    // }
+
+    Order.find({ user_id: id, orderstatus: false }, function (err, data) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            console.log(data)
+            req.resualt = data ? data : {};
+            next();
+        };
+    });
+}
+
 exports.returnData = function (req, res) {
     res.jsonp({
         status: 200,

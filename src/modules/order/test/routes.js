@@ -595,6 +595,35 @@ describe('Order CRUD routes tests', function () {
 
     });
 
+    it('should be Order Get Order History ', function (done) {
+
+        request(app)
+            .post('/api/orders')
+            .set('Authorization', 'Bearer ' + token)
+            .send(mockup)
+            .expect(200)
+            .end(function (err, res) {
+                if (err) {
+                    return done(err);
+                }
+                var resp = res.body;
+                request(app)
+                    .get('/api/order/history/' + resp.data.user_id)
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(200)
+                    .end(function (err, res) {
+                        if (err) {
+                            return done(err);
+                        }
+                        var resp = res.body;
+                        // console.log(resp);
+                        // assert.equal(resp.data.)
+                        done();
+                    });
+            });
+
+    });
+
 
     afterEach(function (done) {
         Order.remove().exec(done);
