@@ -28,7 +28,7 @@ module.exports = function (app) {
         .put(
             controller.returnData
         )
-    app.route('/api/order/history/:historyid')
+    app.route('/api/order/history/:historyid').all(policy.isAllowed)
         .get(controller.returnData)
 
     app.param('orderId', controller.getByID);
