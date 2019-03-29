@@ -198,7 +198,6 @@ exports.orderHistory = function (req, res, next, id) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            console.log(data)
             req.resualt = data ? data : {};
             next();
         };

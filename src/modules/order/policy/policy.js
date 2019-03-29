@@ -35,6 +35,10 @@ exports.invokeRolesPolicies = function() {
         {
           resources: "/api/order/sendorder/:team",
           permissions: "*"
+        },
+        {
+          resources: "/api/order/history/:historyid",
+          permissions: "*"
         }
       ]
     }
