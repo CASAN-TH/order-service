@@ -191,7 +191,7 @@ exports.orderHistory = function (req, res, next, id) {
     //     });
     // }
 
-    Order.find({ user_id: id, orderstatus: false }, function (err, data) {
+    Order.find({ user_id: id, orderstatus: true }, function (err, data) {
         if (err) {
             return res.status(400).send({
                 status: 400,
