@@ -84,6 +84,9 @@ var OrderSchema = new Schema({
                 price: {
                     type: Number
                 },
+                totalqty:{
+                    type: Number
+                },
                 amount: {
                     type: Number
                 }
