@@ -59,6 +59,10 @@ var OrderSchema = new Schema({
                 name: {
                     type: String
                 },
+                reward: {
+                    type: Boolean,
+                    default: false
+                },
                 option: {
                     type: [
                         {
