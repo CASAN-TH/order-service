@@ -31,6 +31,9 @@ module.exports = function (app) {
     app.route('/api/order/history/:historyid').all(policy.isAllowed)
         .get(controller.returnData)
 
+    app.route('/api/order/import').all(policy.isAllowed)
+        .post(controller.importData)
+
     app.param('orderId', controller.getByID);
     app.param('userId', controller.getByUserID);
     app.param('teamId', controller.getOrderByTeam);
