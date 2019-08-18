@@ -50,6 +50,13 @@ exports.create = function (req, res) {
     });
 };
 
+exports.importData = function(req,res){
+    res.jsonp({
+        status: 200,
+        data: {}
+    });
+}
+
 exports.getByID = function (req, res, next, id) {
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
