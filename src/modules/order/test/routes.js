@@ -638,7 +638,7 @@ describe('Order CRUD routes tests', function () {
                 }
                 var resp = res.body;
                 assert.equal(resp.status, 200);
-                assert.equal(resp.data.filename, importMock.filename);
+                assert.equal(resp.data.data.length, importMock.filename);
                 done();
                 // request(app)
                 //     .get('/api/orders')
