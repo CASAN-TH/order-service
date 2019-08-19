@@ -53,7 +53,7 @@ exports.create = function (req, res) {
 exports.importData = function(req,res){
     res.jsonp({
         status: 200,
-        data: {}
+        data: req.body
     });
 }
 
