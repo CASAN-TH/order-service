@@ -647,7 +647,7 @@ describe('Order CRUD routes tests', function () {
                         }
                         var resp = res.body;
                         assert.equal(resp.status, 200);
-                        assert.equal(resp.data[0].filename, 3);
+                        assert.equal(resp.data[0].filename, importMock.filename);
                         done();
                     });
             });
