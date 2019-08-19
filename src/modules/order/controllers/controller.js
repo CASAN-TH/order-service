@@ -386,10 +386,15 @@ exports.mapData = function (req, res, next) {
 
             if (order.reward) {
                 _order.rewards.push({
-                    "name": order.reward,
+                    "name": "**",
                     "price": 0,
                     "totalqty": 1,
                     "amount": 0
+                });
+
+                _order.rewards[_order.rewards.length -1].option[0].value.push({
+                    name: order.reward,
+                    qty: 1
                 });
             }
 
