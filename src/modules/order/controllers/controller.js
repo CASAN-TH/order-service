@@ -69,6 +69,7 @@ exports.mapData = function (req, res, next) {
                     ]
                 },
                 items: [],
+                rewards: [],
                 createby: req.user,
                 user_id: req.user._id,
                 team_id: req.user.ref1
