@@ -68,17 +68,305 @@ exports.mapData = function (req, res, next) {
                         }
                     ]
                 },
+                items: [],
                 createby: req.user,
                 user_id: req.user._id,
                 team_id: req.user.ref1
             };
+            if (order.mini_01 ||
+                order.mini_02 ||
+                order.mini_03 ||
+                order.mini_04 ||
+                order.mini_05 ||
+                order.mini_06 ||
+                order.mini_07 ||
+                order.mini_08 ||
+                order.mini_09 ||
+                order.mini_10 ||
+                order.mini_11 ||
+                order.mini_12) {
+                _order.items.push({
+                    "name": "ลิปมินิ",
+                    "price": 0,
+                    "totalqty": 0,
+                    "amount": 0,
+                    "option": [{ "name": "ประเภท", "value": [] }]
+                });
+
+                if (order.mini_01) {
+                    _order.items[0].option[0].value.push({
+                        name: "1",
+                        qty: order.mini_01
+                    });
+                }
+
+                if (order.mini_02) {
+                    _order.items[0].option[0].value.push({
+                        name: "2",
+                        qty: order.mini_02
+                    });
+                }
+
+                if (order.mini_03) {
+                    _order.items[0].option[0].value.push({
+                        name: "3",
+                        qty: order.mini_03
+                    });
+                }
+
+                if (order.mini_04) {
+                    _order.items[0].option[0].value.push({
+                        name: "4",
+                        qty: order.mini_04
+                    });
+                }
+                if (order.mini_05) {
+                    _order.items[0].option[0].value.push({
+                        name: "5",
+                        qty: order.mini_05
+                    });
+                }
+                if (order.mini_06) {
+                    _order.items[0].option[0].value.push({
+                        name: "6",
+                        qty: order.mini_06
+                    });
+                }
+                if (order.mini_07) {
+                    _order.items[0].option[0].value.push({
+                        name: "7",
+                        qty: order.mini_07
+                    });
+                }
+                if (order.mini_08) {
+                    _order.items[0].option[0].value.push({
+                        name: "8",
+                        qty: order.mini_08
+                    });
+                }
+                if (order.mini_09) {
+                    _order.items[0].option[0].value.push({
+                        name: "9",
+                        qty: order.mini_09
+                    });
+                }
+                if (order.mini_10) {
+                    _order.items[0].option[0].value.push({
+                        name: "10",
+                        qty: order.mini_10
+                    });
+                }
+                if (order.mini_11) {
+                    _order.items[0].option[0].value.push({
+                        name: "11",
+                        qty: order.mini_11
+                    });
+                }
+                if (order.mini_12) {
+                    _order.items[0].option[0].value.push({
+                        name: "12",
+                        qty: order.mini_12
+                    });
+                }
+            }
+            if (order.large_01 ||
+                order.large_02 ||
+                order.large_03 ||
+                order.large_04 ||
+                order.large_05 ||
+                order.large_06 ||
+                order.large_07 ||
+                order.large_08 ||
+                order.large_09 ||
+                order.large_10 ||
+                order.large_11 ||
+                order.large_12
+            ) {
+                _order.items.push({
+                    "name": "ลิป 5 กรัม",
+                    "price": 0,
+                    "totalqty": 0,
+                    "amount": 0
+                });
+
+                if (order.large_01) {
+                    _order.items[0].option[0].value.push({
+                        name: "1",
+                        qty: order.large_01
+                    });
+                }
+
+                if (order.large_02) {
+                    _order.items[0].option[0].value.push({
+                        name: "2",
+                        qty: order.large_02
+                    });
+                }
+
+                if (order.large_03) {
+                    _order.items[0].option[0].value.push({
+                        name: "3",
+                        qty: order.large_03
+                    });
+                }
+
+                if (order.large_04) {
+                    _order.items[0].option[0].value.push({
+                        name: "4",
+                        qty: order.large_04
+                    });
+                }
+                if (order.large_05) {
+                    _order.items[0].option[0].value.push({
+                        name: "5",
+                        qty: order.large_05
+                    });
+                }
+                if (order.large_06) {
+                    _order.items[0].option[0].value.push({
+                        name: "6",
+                        qty: order.large_06
+                    });
+                }
+                if (order.large_07) {
+                    _order.items[0].option[0].value.push({
+                        name: "7",
+                        qty: order.large_07
+                    });
+                }
+                if (order.large_08) {
+                    _order.items[0].option[0].value.push({
+                        name: "8",
+                        qty: order.large_08
+                    });
+                }
+                if (order.large_09) {
+                    _order.items[0].option[0].value.push({
+                        name: "9",
+                        qty: order.large_09
+                    });
+                }
+                if (order.large_10) {
+                    _order.items[0].option[0].value.push({
+                        name: "10",
+                        qty: order.large_10
+                    });
+                }
+                if (order.large_11) {
+                    _order.items[0].option[0].value.push({
+                        name: "11",
+                        qty: order.large_11
+                    });
+                }
+                if (order.large_12) {
+                    _order.items[0].option[0].value.push({
+                        name: "12",
+                        qty: order.large_12
+                    });
+                }
+            }
+
+            if (order.pub_01 ||
+                order.pub_02 ||
+                order.pub_03) {
+                _order.items.push({
+                    "name": "แป้ง cc&long lasting",
+                    "price": 0,
+                    "totalqty": 0,
+                    "amount": 0
+                });
+
+                if (order.pub_01) {
+                    _order.items[0].option[0].value.push({
+                        name: "1",
+                        qty: order.pub_01
+                    });
+                }
+
+                if (order.pub_02) {
+                    _order.items[0].option[0].value.push({
+                        name: "2",
+                        qty: order.pub_02
+                    });
+                }
+
+                if (order.pub_03) {
+                    _order.items[0].option[0].value.push({
+                        name: "3",
+                        qty: order.pub_03
+                    });
+                }
+            }
+            if (order.pb_01 ||
+                order.pb_02 ||
+                order.pb_03) {
+                _order.items.push({
+                    "name": "แป้ง all in one perfect",
+                    "price": 0,
+                    "totalqty": 0,
+                    "amount": 0
+                });
+
+                if (order.pb_01) {
+                    _order.items[0].option[0].value.push({
+                        name: "1",
+                        qty: order.pb_01
+                    });
+                }
+
+                if (order.pb_02) {
+                    _order.items[0].option[0].value.push({
+                        name: "2",
+                        qty: order.pb_02
+                    });
+                }
+
+                if (order.pb_03) {
+                    _order.items[0].option[0].value.push({
+                        name: "3",
+                        qty: order.pb_03
+                    });
+                }
+            }
+            if (order.soappink ||
+                order.soaporange) {
+                _order.items.push({
+                    "name": "สบู่",
+                    "price": 0,
+                    "totalqty": 0,
+                    "amount": 0
+                });
+
+                if (order.soappink) {
+                    _order.items[0].option[0].value.push({
+                        name: "pink",
+                        qty: order.soappink
+                    });
+                }
+
+                if (order.soaporange) {
+                    _order.items[0].option[0].value.push({
+                        name: "orange",
+                        qty: order.soaporange
+                    });
+                }
+            }
+
+            if(order.reward){
+                // _order.items.push({
+                //     "name": "**",
+                //     "price": 0,
+                //     "totalqty": 0,
+                //     "amount": 0
+                // });
+            }
 
             if (order.codamount) {
                 _order.paymenttype = {
                     name: "ปลายทาง"
                 };
                 _order.totalamount = order.codamount;
-            }else{
+            } else {
                 _order.paymenttype = {
                     name: "โอนแล้ว"
                 };
