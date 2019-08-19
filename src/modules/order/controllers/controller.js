@@ -385,17 +385,29 @@ exports.mapData = function (req, res, next) {
             }
 
             if (order.reward) {
-                _order.rewards.push({
+                // _order.rewards.push({
+                //     "name": "**",
+                //     "price": 0,
+                //     "totalqty": 1,
+                //     "amount": 0,
+                //     "option": [{ "name": "ประเภท", "value": [] }]
+                // });
+
+                // _order.rewards[_order.rewards.length -1].option[0].value.push({
+                //     name: order.reward,
+                //     qty: 1
+                // });
+                _order.items.push({
                     "name": "**",
                     "price": 0,
-                    "totalqty": 1,
+                    "totalqty": order.reward,
                     "amount": 0,
                     "option": [{ "name": "ประเภท", "value": [] }]
                 });
 
-                _order.rewards[_order.rewards.length -1].option[0].value.push({
-                    name: order.reward,
-                    qty: 1
+                _order.items[_order.items.length -1].option[0].value.push({
+                    name: 'แหวน',
+                    qty: order.reward
                 });
             }
 
