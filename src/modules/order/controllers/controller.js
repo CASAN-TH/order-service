@@ -50,11 +50,63 @@ exports.create = function (req, res) {
     });
 };
 
-exports.importData = function(req,res){
-    res.jsonp({
-        status: 200,
-        data: req.body
+exports.mapData = function (req, res, next) {
+    req.orders = [];
+    req.body.data.forEach(order => {
+        if (order.recipientname) {
+            let _order = {
+                orderno: new Date().getTime(),
+                orderstatus: false,
+                team_id: 'teamid',
+                customer: {
+                    firstname: order.recipientname,
+                    tel: order.mobile,
+                    address: [
+                        {
+                            houseno: order.address,
+                            zipcode: order.postcode
+                        }
+                    ]
+                },
+                createby: req.user,
+                user_id: req.user._id,
+                team_id: req.user.ref1
+            };
+
+            if (order.codamount) {
+                _order.paymenttype = {
+                    name: "ปลายทาง"
+                };
+                _order.totalamount = order.codamount;
+            }
+
+            req.orders.push(_order);
+        }
+
     });
+    next();
+}
+
+exports.importData = function (req, res) {
+    Order.insertMany(
+        req.orders,
+        {
+            ordered: false
+        },
+        function (err, data) {
+            if (err) {
+                return res.status(401).send({
+                    status: 401,
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                res.jsonp({
+                    status: 200,
+                    data: data
+                });
+            }
+        }
+    );
 }
 
 exports.getByID = function (req, res, next, id) {
@@ -182,7 +234,7 @@ exports.updateOrder = function (req, res, next, id) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            console.log(datas)
+            // console.log(datas)
             req.resualt = datas
             next();
         }
