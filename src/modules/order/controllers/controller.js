@@ -358,8 +358,8 @@ exports.mapData = function (req, res, next) {
                     });
                 }
             }
-            if (order.soappink ||
-                order.soaporange) {
+            if (order.soap_pink ||
+                order.soap_orange) {
                 _order.items.push({
                     "name": "สบู่",
                     "price": 0,
