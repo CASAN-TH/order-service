@@ -78,6 +78,11 @@ exports.mapData = function (req, res, next) {
                     name: "ปลายทาง"
                 };
                 _order.totalamount = order.codamount;
+            }else{
+                _order.paymenttype = {
+                    name: "โอนแล้ว"
+                };
+                _order.totalamount = 0;
             }
 
             req.orders.push(_order);
