@@ -369,17 +369,17 @@ exports.mapData = function (req, res, next) {
                     "option": [{ "name": "สี", "value": [] }]
                 });
 
-                if (order.soappink) {
+                if (order.soap_pink) {
                     _order.items[_order.items.length -1].option[0].value.push({
                         name: "pink",
-                        qty: order.soappink
+                        qty: order.soap_pink
                     });
                 }
 
-                if (order.soaporange) {
+                if (order.soap_orange) {
                     _order.items[_order.items.length -1].option[0].value.push({
                         name: "orange",
-                        qty: order.soaporange
+                        qty: order.soap_orange
                     });
                 }
             }
