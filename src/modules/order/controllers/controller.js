@@ -365,8 +365,8 @@ exports.mapData = function (req, res, next) {
                 _order.items.push({
                     "name": "สบู่",
                     "price": 0,
-                    "totalqty": (order.soappink || 0)
-                        + (order.soaporange || 0),
+                    "totalqty": (order.soap_pink || 0)
+                        + (order.soap_orange || 0),
                     "amount": 0,
                     "option": [{ "name": "สี", "value": [] }]
                 });
