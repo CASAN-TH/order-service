@@ -52,10 +52,12 @@ exports.create = function (req, res) {
 
 exports.mapData = function (req, res, next) {
     req.orders = [];
+    let idx = 0;
     req.body.data.forEach(order => {
         if (order.recipientname) {
+            idx += 1;
             let _order = {
-                orderno: new Date().getTime(),
+                orderno: new Date().getTime() + "-" + idx,
                 orderstatus: false,
                 team_id: 'teamid',
                 customer: {
@@ -106,76 +108,76 @@ exports.mapData = function (req, res, next) {
                 });
 
                 if (order.mini_01) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "1",
                         qty: order.mini_01
                     });
                 }
 
                 if (order.mini_02) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "2",
                         qty: order.mini_02
                     });
                 }
 
                 if (order.mini_03) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "3",
                         qty: order.mini_03
                     });
                 }
 
                 if (order.mini_04) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "4",
                         qty: order.mini_04
                     });
                 }
                 if (order.mini_05) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "5",
                         qty: order.mini_05
                     });
                 }
                 if (order.mini_06) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "6",
                         qty: order.mini_06
                     });
                 }
                 if (order.mini_07) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "7",
                         qty: order.mini_07
                     });
                 }
                 if (order.mini_08) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "8",
                         qty: order.mini_08
                     });
                 }
                 if (order.mini_09) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "9",
                         qty: order.mini_09
                     });
                 }
                 if (order.mini_10) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "10",
                         qty: order.mini_10
                     });
                 }
                 if (order.mini_11) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "11",
                         qty: order.mini_11
                     });
                 }
                 if (order.mini_12) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "12",
                         qty: order.mini_12
                     });
@@ -214,76 +216,76 @@ exports.mapData = function (req, res, next) {
                 });
 
                 if (order.large_01) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "1",
                         qty: order.large_01
                     });
                 }
 
                 if (order.large_02) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "2",
                         qty: order.large_02
                     });
                 }
 
                 if (order.large_03) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "3",
                         qty: order.large_03
                     });
                 }
 
                 if (order.large_04) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "4",
                         qty: order.large_04
                     });
                 }
                 if (order.large_05) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "5",
                         qty: order.large_05
                     });
                 }
                 if (order.large_06) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "6",
                         qty: order.large_06
                     });
                 }
                 if (order.large_07) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "7",
                         qty: order.large_07
                     });
                 }
                 if (order.large_08) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "8",
                         qty: order.large_08
                     });
                 }
                 if (order.large_09) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "9",
                         qty: order.large_09
                     });
                 }
                 if (order.large_10) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "10",
                         qty: order.large_10
                     });
                 }
                 if (order.large_11) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "11",
                         qty: order.large_11
                     });
                 }
                 if (order.large_12) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "12",
                         qty: order.large_12
                     });
@@ -304,21 +306,21 @@ exports.mapData = function (req, res, next) {
                 });
 
                 if (order.pub_01) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "1",
                         qty: order.pub_01
                     });
                 }
 
                 if (order.pub_02) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "2",
                         qty: order.pub_02
                     });
                 }
 
                 if (order.pub_03) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "3",
                         qty: order.pub_03
                     });
@@ -338,21 +340,21 @@ exports.mapData = function (req, res, next) {
                 });
 
                 if (order.pb_01) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "1",
                         qty: order.pb_01
                     });
                 }
 
                 if (order.pb_02) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "2",
                         qty: order.pb_02
                     });
                 }
 
                 if (order.pb_03) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "3",
                         qty: order.pb_03
                     });
@@ -370,14 +372,14 @@ exports.mapData = function (req, res, next) {
                 });
 
                 if (order.soap_pink) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "pink",
                         qty: order.soap_pink
                     });
                 }
 
                 if (order.soap_orange) {
-                    _order.items[_order.items.length -1].option[0].value.push({
+                    _order.items[_order.items.length - 1].option[0].value.push({
                         name: "orange",
                         qty: order.soap_orange
                     });
@@ -405,7 +407,7 @@ exports.mapData = function (req, res, next) {
                     "option": [{ "name": "ประเภท", "value": [] }]
                 });
 
-                _order.items[_order.items.length -1].option[0].value.push({
+                _order.items[_order.items.length - 1].option[0].value.push({
                     name: 'แหวน',
                     qty: order.reward
                 });
